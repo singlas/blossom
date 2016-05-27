@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta>
+		<title>Blossom - Contact</title>
+
+					<!-- Compiled and minified CSS -->
+		  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+
+		  <!-- Compiled and minified JavaScript -->
+		  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+         
+
+		<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
+
+			<!-- Jquery and Jquery Scroll -->
+		   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+
+		   <script type="text/javascript" src="js/jquery.scrollTo.js"></script>
+
+	    <script>
+	        $(document).ready(function(){
+	        //attach a click event listener to all the img tags when the document is ready
+	            $('#how').click(function(){
+	                $(this).css('visibility','hidden');
+	            });
+
+	            $('button').click(function(){
+	                $('img').css('visibility','visible');
+	            });
+	        });
+	    </script>
+
+		<style type="text/css">
+		.brand-logo{
+			margin-left: 50px;
+		}
+
+		.words{
+			display: inline-block;
+		}
+		.image{
+			display: inline-block;
+		}
+
+		#top{
+		    height: 600px;
+		    width: 300px;
+		    background: green; 
+		}
+		#middle{
+		    height: 600px;
+		    width: 300px;
+		    background: blue; 
+		}
+		
+		</style>
+	</head>
+<body>
+<div class="navbar-fixed">
+	<nav>
+	    <div class="nav-wrapper">
+	    	
+	      <a href="/" class="brand-logo">Blossom</a>
+	      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+	      <ul class="right hide-on-med-and-down">
+	        <li><a href="/#why">Why?</a></li>
+	        <li><a href="/#how">How?</a></li>
+	        <li><a href="/#what">What next?</a></li>
+	         <li><a class="waves-effect waves-light btn">Get Your Report</a></li>
+
+	      </ul>
+	      <ul class="side-nav" id="mobile-demo">
+	        <li><a href="/#why">Why?</a></li>
+	        <li><a href="/#how">How?</a></li>
+	        <li><a href="/what">What?</a></li>
+	        <li><a class="waves-effect waves-light btn">Get Your Report</a></li>
+
+	      </ul>
+	    </div>
+	  </nav>
+	</div>
+
+
+		<div class='container'>
+			<div class='col s12 m6'>
+				<h3> Contact Us </h3> 
+				<p>We love hearing from our customers. Let us know if you'd like to chat and learn more!</p>
+				<form action="/create" method = "post">
+					First Name: <input type="text" name="first_name"> 
+					<br>
+					Last Name: <input type="text" id="large" name="last_name">
+					<br>
+					Email: <input type="email" name="email">
+					<br>
+					<button type="submit">Create </submit>
+				</form>
+			</div>
+		</div>
+
+ 	<footer class="page-footer">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">Blossom</h5>
+                <p class="grey-text text-lighten-4">Helping you build lasting joyous relationships.</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text"><a class="grey-text text-lighten-4" href="/add">Contact Us</a></h5>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2016 Copyright 
+            </div>
+          </div>
+    </footer>
+            
+</body>
+</html>
