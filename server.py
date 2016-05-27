@@ -44,8 +44,9 @@ def create():
 	first_name = request.form['first_name']
 	last_name = request.form['last_name']
 	email = request.form['email']
+	comment = request.form['comment']
 
-	query = "INSERT INTO users (first_name, last_name, email, created_at, updated_at) VALUES ('{}', '{}', '{}', NOW(), NOW())".format(first_name, last_name, email)
+	query = "INSERT INTO users (first_name, last_name, email, comment, created_at, updated_at) VALUES ('{}', '{}', '{}', '{}', NOW(), NOW())".format(first_name, last_name, email, comment)
 	mysql.run_mysql_query(query)
 	return redirect('/')
 
