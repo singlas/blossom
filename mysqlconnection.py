@@ -17,11 +17,11 @@ class MySQLConnection(object):
         """ BEGIN DATABASE CONFIGURATIONS """
         self.config = {
             'user': 'root',
-            'password': 'root', # Change this for windows users
+            'password': 'password', # Change this for windows users
             'database': db,
             'host': 'localhost',
             # comment out the line below for windows
-            'unix_socket': '/Applications/MAMP/tmp/mysql/mysql.sock',
+            # 'unix_socket': '/Applications/MAMP/tmp/mysql/mysql.sock',
         }
         self.conn = mysql.connector.connect(**self.config)
     """ BELOW ARE THE CUSTOM FUNCTIONS WE BUILT FOR YOU TO USE """
@@ -31,7 +31,7 @@ class MySQLConnection(object):
     """
     # Begin fetch
     def fetch(self, query):
-        cursor = self.conn.cursor(dictionary=True)
+        cursor = self.conn.cursor(dictionary=True, buffered=True)
         cursor.execute(query)
         data = list(cursor.fetchall())
         cursor.close()
@@ -42,7 +42,7 @@ class MySQLConnection(object):
     """
     # Begin run_mysql_query
     def run_mysql_query(self, query):
-        cursor = self.conn.cursor(dictionary=True)
+        cursor = self.conn.cursor(dictionary=True, buffered=True)
         data = cursor.execute(query)
         self.conn.commit()
         cursor.close()

@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template, request, redirect, session, flash
 from mysqlconnection import MySQLConnector
 import stripe
+import json
 
 stripe_keys = {
     'secret_key': os.environ['SECRET_KEY'],
@@ -48,13 +49,19 @@ def create():
 
 	query = "INSERT INTO users (first_name, last_name, email, comment, created_at, updated_at) VALUES ('{}', '{}', '{}', '{}', NOW(), NOW())".format(first_name, last_name, email, comment)
 	mysql.run_mysql_query(query)
-	return redirect('/')
+	return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
 
 @app.route("/show/<id>")
 def show(id):
 	query = "SELECT id, first_name, last_name, email, created_at FROM users WHERE id = '{}'".format(id)
 	info = mysql.fetch(query)
-	return render_template("show.html", users=info)
+	return render_template("show.html", users=info, userid=id)
+
+@app.route("/show")
+def show_all():
+    query = "SELECT id, first_name, last_name, email, comment, created_at FROM users"
+    info = mysql.fetch(query)
+    return render_template("show_all.html", users=info)
 
 @app.route("/destroy/<id>")
 def destroy(id):
@@ -69,9 +76,13 @@ def index():
 def charge():
     # Amount in cents
     amount = 4999
+    first_name = request.form['first_name']
+    last_name = request.form['last_name']
+    email = request.form['email']
+    comment = request.form['comment']
 
     customer = stripe.Customer.create(
-        email='customer@example.com',
+        email=email,
         source=request.form['stripeToken']
     )
 
@@ -79,10 +90,14 @@ def charge():
         customer=customer.id,
         amount=amount,
         currency='usd',
-        description='Flask Charge'
+        description='Moon and back report charge'
     )
 
-    return render_template('charge.html', amount=amount)
+    comment = comment + "  PAID THROUGH STRIPE"
+    query = "INSERT INTO users (first_name, last_name, email, comment, created_at, updated_at) VALUES ('{}', '{}', '{}', '{}', NOW(), NOW())".format(first_name, last_name, email, comment)
+    mysql.run_mysql_query(query)
+
+    return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
 
 if __name__ == '__main__':
 

@@ -18,31 +18,33 @@
 
 		<div class='container'>
 		<div class='col-md-6'>
-			{% for user in users: %}
-			<h1> User {{user['id']}}  </h1>
-			{% endfor %}
+			<h1> Contact form Users [{{users|length}}]  </h1>
 			<table class="table">
 				 <thead>
 					<tr>
 					   	<th>Full Name </th>
 					   	<th>Email</th>
+					   	<th>Comment</th>
 					   	<th>Created At</th>
+					   	<th>Edit</th>
 					</tr>
 				</thead>
 				<tbody>
 				<tbody>
+				{% for user in users: %}
 			      	<tr>
-			      		{% for user in users: %}
 				        <td> {{user['first_name']}} {{user['last_name']}}  </td>
 				        <td> {{user['email']}}  </td>
+				        <td> {{user['comment']}}  </td>
 				        <td> {{user['created_at']}}  </td>
-				       	{% endfor %}
+				        <td> <a href="/edit/{{user['id']}}"> Edit </a>  </td>
 			      	</tr>
+			      	{% endfor %}
 			    </tbody>
 			  </table>
 		</div>
 		<p><a href="/">Back</a></p>
-			<a href="/edit/{{userid}}"> Edit </a>
+
 	</div>
 </body>
 </html>
