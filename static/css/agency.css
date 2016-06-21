@@ -186,6 +186,7 @@ fieldset[disabled] .btn-xl.active {
     letter-spacing: 1px;
     color: #fff
 }
+
 .navbar-default .nav li a:hover,
 .navbar-default .nav li a:focus {
     color: #fed136;
@@ -201,6 +202,8 @@ fieldset[disabled] .btn-xl.active {
     color: #fff;
     background-color: #fec503
 }
+
+
 @media (min-width: 768px) {
     .navbar-default {
         background-color: transparent;
@@ -227,6 +230,19 @@ fieldset[disabled] .btn-xl.active {
         font-size: 1.5em
     }
 }
+
+.highlight {
+    border-radius: 0;
+    color: #d35400 !important;
+    background-color:#ecf0f1;
+    border-radius: 3px;
+    margin:0 2px 0 2px;
+}
+
+.navbar-default .navbar-nav>.active>.highlight {
+    color: #fff !important;
+}
+
 header {
     background-image: url(../img/lake.jpg);
     background-repeat: none;
