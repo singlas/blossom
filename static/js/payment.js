@@ -8,6 +8,7 @@ $(function() {
         },
         submitSuccess: function($form, event) {
             event.preventDefault(); // prevent default submit behaviour
+            ga('send', 'event', 'pay_btn_click', 'location', 'pay_btn');
             var $button = $("#pay_btn");
             var name = $("input#name2").val();
             var email = $("input#email2").val();
@@ -38,6 +39,7 @@ $(function() {
                     cache: false,
                     success: function() {
                         // Success message
+                        ga('send', 'event', 'pay_btn_success', 'message', 'paid');
                         $('#success2').html("<div class='alert alert-success'>");
                         $('#success2 > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
                             .append("</button>");
@@ -53,6 +55,7 @@ $(function() {
                     },
                     error: function() {
                         // Fail message
+                        ga('send', 'event', 'pay_btn_fail', 'message', 'something went wrong');
                         $('#success2').html("<div class='alert alert-danger'>");
                         $('#success2 > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
                             .append("</button>");
